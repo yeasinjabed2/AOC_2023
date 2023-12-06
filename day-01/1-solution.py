@@ -1,13 +1,15 @@
-inputs = open('day-01/1-input.txt', 'r').read().split('\n')
-
-total_sum = 0
-
-for input in inputs:
+def get_cal_val(line: str) -> int:
     digits = []
-    for char in input:
+    for char in line:
         if char.isdigit():
             digits.append(char)
+    return int(digits[0] + digits[-1])
 
-    total_sum += int(digits[0] + digits[-1])
 
-print(total_sum)  # 53386
+def run(path: str):
+    with open(path, 'r') as f:
+        lines = f.read().strip().split('\n')
+    return sum([get_cal_val(line) for line in lines])
+
+
+print(run('day-01/1-input.txt'))
